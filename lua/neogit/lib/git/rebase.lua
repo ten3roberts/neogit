@@ -94,6 +94,7 @@ function M.run_interactive(commit)
     if j.code > 0 then
       logger.debug(fmt("Execution of '%s' failed with code %d", j.cmd, j.code))
     end
+    local status = require("neogit.status")
     status.refresh(true)
   end
 
@@ -109,6 +110,7 @@ function M.continue()
     if j.code > 0 then
       logger.debug(fmt("Execution of '%s' failed with code %d", j.cmd, j.code))
     else
+      local status = require("neogit.status")
       status.refresh(true)
     end
   end
