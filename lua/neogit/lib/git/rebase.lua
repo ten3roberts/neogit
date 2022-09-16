@@ -37,12 +37,12 @@ local function parse(raw)
     local start_idx = #s1 + #s2 + 1
 
     local function ladvance()
-      local line = advance()
+      local line = advance() or ""
       return line and line:sub(start_idx + 1, -1) or nil
     end
 
     do
-      local line = ladvance()
+      local line = ladvance() or ""
 
       if vim.startswith(line, "Merge:") then
         commit.merge = line:match("Merge:%s*(%w+) (%w+)")
@@ -95,6 +95,7 @@ function M.run_interactive(commit)
     if j.code > 0 then
       logger.debug(fmt("Execution of '%s' failed with code %d", j.cmd, j.code))
     end
+    status.refresh(true)
   end
 
   job:start()
