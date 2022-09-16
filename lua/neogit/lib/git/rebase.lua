@@ -5,7 +5,6 @@ local client = require("neogit.client")
 local fmt = string.format
 local fn = vim.fn
 
----@class Rebase: Module
 local M = {}
 
 local commit_header_pat = "([| *]*)%*([| *]*)commit (%w+)"
